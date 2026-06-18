@@ -1,0 +1,126 @@
+/* Charontak cockpit plugin. SPDX-License-Identifier: Apache-2.0 */
+:root {
+  color-scheme: light;
+  --ct-bg: #eef1f0;
+  --ct-panel: #ffffff;
+  --ct-ink: #122322;
+  --ct-muted: #53615f;
+  --ct-border: rgba(21, 48, 47, 0.18);
+  --ct-accent: #1f6f62;
+  --ct-accent-dark: #164d45;
+  --ct-danger: #b42318;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body.page-ct {
+  margin: 0;
+  padding: clamp(1rem, 2vw, 1.75rem) clamp(1rem, 3vw, 2rem) 3rem;
+  background:
+    linear-gradient(180deg, rgba(12, 31, 31, 0.08), rgba(12, 31, 31, 0) 18rem),
+    var(--ct-bg);
+  color: var(--ct-ink);
+  font-family: "RedHatText", "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+.ct-shell {
+  width: min(100%, 62rem);
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  line-height: 1.1;
+}
+
+p {
+  max-width: 56rem;
+  color: var(--ct-muted);
+  line-height: 1.55;
+}
+
+.ct-card {
+  margin: 1rem 0;
+  padding: clamp(1rem, 2vw, 1.3rem);
+  background: var(--ct-panel);
+  border: 1px solid var(--ct-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(14, 29, 31, 0.08);
+}
+
+.ct-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.ct-btn,
+.pf-c-button {
+  min-height: 2.25rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--ct-accent);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--ct-accent-dark);
+  cursor: pointer;
+  font-weight: 650;
+}
+
+.ct-btn-primary,
+.pf-m-primary {
+  background: var(--ct-accent);
+  color: #fff;
+}
+
+.ct-btn-danger,
+.pf-m-danger {
+  border-color: var(--ct-danger);
+  color: var(--ct-danger);
+}
+
+pre,
+textarea,
+code {
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+pre,
+textarea {
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid rgba(21, 48, 47, 0.22);
+  border-radius: 6px;
+  background: #f8faf9;
+}
+
+pre {
+  min-height: 12rem;
+  margin: 0;
+  padding: 1rem;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+textarea {
+  min-height: 24rem;
+  padding: 0.75rem;
+  resize: vertical;
+}
+
+@media (max-width: 680px) {
+  body.page-ct {
+    padding-inline: 1rem;
+  }
+
+  .ct-card {
+    margin-inline: -0.25rem;
+  }
+
+  .ct-actions button {
+    flex: 1 1 12rem;
+  }
+}

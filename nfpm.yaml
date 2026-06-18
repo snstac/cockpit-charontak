@@ -21,6 +21,8 @@ recommends:
   - charontak
 
 contents:
+  - src: ./charontak.css
+    dst: /usr/share/cockpit/charontak/charontak.css
   - src: ./charontak.js
     dst: /usr/share/cockpit/charontak/charontak.js
   - src: ./index.html
