@@ -8,6 +8,7 @@
   --ct-border: rgba(21, 48, 47, 0.18);
   --ct-accent: #1f6f62;
   --ct-accent-dark: #164d45;
+  --ct-accent-ink: #f2fff8;
   --ct-danger: #b42318;
 }
 
@@ -64,7 +65,7 @@ p {
   padding: 0.5rem 1rem;
   border: 1px solid var(--ct-accent);
   border-radius: 5px;
-  background: #fff;
+  background: #fbfdfc;
   color: var(--ct-accent-dark);
   cursor: pointer;
   font-weight: 650;
@@ -73,7 +74,7 @@ p {
 .ct-btn-primary,
 .pf-m-primary {
   background: var(--ct-accent);
-  color: #fff;
+  color: var(--ct-accent-ink);
 }
 
 .ct-btn-danger,
@@ -94,7 +95,8 @@ textarea {
   max-width: 100%;
   border: 1px solid rgba(21, 48, 47, 0.22);
   border-radius: 6px;
-  background: #f8faf9;
+  background: #fbfdfc;
+  color: var(--ct-ink);
 }
 
 pre {
