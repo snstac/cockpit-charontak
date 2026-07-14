@@ -60,11 +60,11 @@ p {
   margin: 1rem 0;
 }
 
-/* Touch targets sized for gloved field use. */
+/* Touch targets sized for gloved field use (>=48px on all controls). */
 .ct-btn,
 .pf-c-button {
-  min-height: 2.75rem;
-  padding: 0.6rem 1.2rem;
+  min-height: 3rem;
+  padding: 0.7rem 1.2rem;
   font-size: 1rem;
   border: 1px solid var(--ct-accent);
   border-radius: 5px;
@@ -116,7 +116,7 @@ textarea {
   resize: vertical;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 760px) {
   body.page-ct {
     padding-inline: 1rem;
   }
