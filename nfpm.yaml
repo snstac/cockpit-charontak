@@ -1,5 +1,5 @@
-# nfpm config — static Cockpit plugin, no build step.
-# Usage: VERSION=1.0.0 nfpm package -f nfpm.yaml -p deb -t out/
+# nfpm config — packages the esbuild bundle from dist/.
+# Usage: make package   (or: VERSION=1.0.0 nfpm package -f nfpm.yaml -p deb -t out/)
 name: cockpit-charontak
 arch: all
 platform: linux
@@ -13,7 +13,8 @@ homepage: https://github.com/snstac/cockpit-charontak
 license: Apache-2.0
 description: |
   Cockpit web console plugin for Charontak, the CoT bridge / TAK Server lane
-  manager. Service control, /etc/charontak.ini editing, journal output.
+  manager. Structured lane editor with PyTAK CoT URL validation, service
+  control, TLS certificate upload, journal output, and a raw config editor.
 
 depends:
   - cockpit-bridge
@@ -21,11 +22,6 @@ recommends:
   - charontak
 
 contents:
-  - src: ./charontak.css
-    dst: /usr/share/cockpit/charontak/charontak.css
-  - src: ./charontak.js
-    dst: /usr/share/cockpit/charontak/charontak.js
-  - src: ./index.html
-    dst: /usr/share/cockpit/charontak/index.html
-  - src: ./manifest.json
-    dst: /usr/share/cockpit/charontak/manifest.json
+  - src: ./dist/
+    dst: /usr/share/cockpit/charontak/
+    type: tree

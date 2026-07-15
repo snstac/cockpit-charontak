@@ -1,0 +1,308 @@
+@use "page.scss";
+
+/* Spacing between stacked expandable cards only — do not set overflow on the Card (breaks PF / scrolling). */
+.charontak-expandable-card {
+    margin-top: 1rem;
+}
+
+/* AryaOS operations console dark theme (fleet standard). */
+:root {
+    color-scheme: dark;
+    --aos-bg: #071211;
+    --aos-panel: #122322;
+    --aos-panel-2: #172c2a;
+    --aos-ink: #edf7f4;
+    --aos-muted: #9bb2ad;
+    --aos-border: rgb(124 170 160 / 28%);
+    --aos-border-strong: rgb(124 170 160 / 40%);
+    --aos-accent: #35a58f;
+    --aos-accent-dark: #6ed4be;
+    --aos-accent-ink: #071211;
+    --aos-danger: #ff8a7a;
+    --aos-ok: #74d8a4;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+    block-size: 100%;
+}
+
+body {
+    margin: 0;
+    background:
+        linear-gradient(180deg, rgb(53 165 143 / 16%), rgb(7 18 17 / 0%) 18rem),
+        var(--aos-bg);
+    color: var(--aos-ink);
+    font-family: RedHatText, "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+[data-testid="ct-app"] {
+    width: min(100%, 62rem);
+    min-block-size: 100%;
+    margin: 0 auto;
+    padding: clamp(1rem, 2vw, 1.75rem) clamp(1rem, 3vw, 2rem) 3rem;
+}
+
+h1 {
+    color: var(--aos-ink);
+}
+
+p {
+    color: var(--aos-muted);
+    font-weight: 400;
+    line-height: 1.55;
+}
+
+.pf-v6-c-card,
+.pf-c-card {
+    margin: 1rem 0;
+    background: var(--aos-panel);
+    border: 1px solid var(--aos-border);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 32%);
+}
+
+.pf-v6-c-card__title,
+.pf-c-card__title {
+    color: var(--aos-ink);
+    font-size: 1.1rem;
+    line-height: 1.3;
+}
+
+.ct-card-expandable-header {
+    padding-block: 0.9rem;
+}
+
+.pf-v6-c-card__body,
+.pf-c-card__body,
+.pf-v6-c-card__expandable-content,
+.pf-c-card__expandable-content {
+    color: var(--aos-ink);
+}
+
+label {
+    color: var(--aos-ink);
+    font-weight: 650;
+}
+
+label div {
+    color: var(--aos-muted) !important;
+    font-weight: 400;
+    line-height: 1.45;
+}
+
+/* Touch targets sized for gloved field use (>=48px on all controls). */
+.pf-v6-c-button,
+.pf-c-button,
+button {
+    min-height: 3rem;
+    padding-inline: 1.2rem;
+    border-radius: 5px;
+    font-weight: 650;
+}
+
+.pf-v6-c-button.pf-m-primary,
+.pf-c-button.pf-m-primary,
+button.pf-m-primary {
+    border-color: var(--aos-accent);
+    background: var(--aos-accent);
+    background-color: var(--aos-accent) !important;
+    color: var(--aos-accent-ink) !important;
+}
+
+.pf-v6-c-button.pf-m-secondary,
+.pf-c-button.pf-m-secondary,
+button.pf-m-secondary {
+    border-color: var(--aos-accent);
+    background-color: var(--aos-panel-2) !important;
+    color: var(--aos-accent-dark) !important;
+}
+
+button.charontak-danger {
+    border-color: var(--aos-danger);
+    color: var(--aos-danger) !important;
+}
+
+.pf-v6-c-form-control,
+.pf-c-form-control,
+input,
+select,
+textarea {
+    width: min(100%, 34rem) !important;
+    max-width: 100%;
+    min-height: 3rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--aos-border-strong);
+    border-radius: 5px;
+    background-color: var(--aos-panel-2) !important;
+    color: var(--aos-ink) !important;
+}
+
+input[type="checkbox"] {
+    inline-size: 1.6rem !important;
+    block-size: 1.6rem;
+    min-height: 1.6rem;
+    accent-color: var(--aos-accent);
+}
+
+textarea,
+pre,
+code {
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+}
+
+textarea {
+    width: 100% !important;
+}
+
+pre {
+    max-width: 100%;
+    overflow: auto;
+    background: var(--aos-panel-2) !important;
+    color: var(--aos-ink) !important;
+    border: 1px solid rgb(124 170 160 / 28%);
+    border-radius: 6px !important;
+    padding: 1em;
+    max-height: 300px;
+    min-height: 100px;
+    font-size: 0.95em;
+}
+
+/* Lane list */
+.charontak-lane-list {
+    margin: 0 0 1rem;
+    padding: 0;
+    list-style: none;
+}
+
+.charontak-lane-row {
+    padding: 0.9rem 0.25rem;
+    border-block-end: 1px solid rgb(124 170 160 / 18%);
+}
+
+.charontak-lane-head {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.charontak-lane-mode {
+    color: var(--aos-muted);
+    font-size: 0.9em;
+}
+
+.charontak-lane-disabled {
+    color: var(--aos-danger);
+    font-size: 0.9em;
+}
+
+.charontak-dot {
+    display: inline-block;
+    inline-size: 0.8rem;
+    block-size: 0.8rem;
+    border-radius: 50%;
+    background: var(--aos-muted);
+}
+
+.charontak-dot.is-on {
+    background: var(--aos-ok);
+}
+
+.charontak-dot.is-off {
+    background: var(--aos-danger);
+}
+
+.charontak-lane-flow {
+    display: block;
+    margin: 0.4rem 0 0.6rem;
+    color: var(--aos-accent-dark);
+    overflow-wrap: anywhere;
+}
+
+.charontak-lane-actions,
+.charontak-lane-editor-actions,
+.charontak-log-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-block: 0.5rem 1rem;
+}
+
+/* Lane editor */
+.charontak-lane-editor {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--aos-border-strong);
+    border-radius: 8px;
+    background: var(--aos-panel-2);
+}
+
+.charontak-lane-editor h3 {
+    margin-top: 0;
+    color: var(--aos-ink);
+}
+
+.charontak-field {
+    margin-block-end: 0.9rem;
+}
+
+.charontak-field label {
+    display: block;
+    margin-block-end: 0.3rem;
+}
+
+.charontak-field-error {
+    margin-top: 0.3rem;
+    color: var(--aos-danger);
+    max-width: 34rem;
+}
+
+.charontak-tls-fieldset {
+    margin-block: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--aos-border);
+    border-radius: 6px;
+}
+
+.charontak-tls-fieldset legend {
+    color: var(--aos-muted);
+    padding-inline: 0.4rem;
+}
+
+.charontak-extra-keys {
+    font-size: 0.9em;
+}
+
+.charontak-save-options {
+    margin-block: 1rem 0.25rem;
+}
+
+@media (width <= 760px) {
+    [data-testid="ct-app"] {
+        padding-inline: 1rem;
+    }
+
+    .charontak-expandable-card {
+        margin-inline: -0.25rem;
+    }
+
+    .pf-v6-l-flex,
+    .pf-c-form__actions,
+    .charontak-lane-actions,
+    .charontak-lane-editor-actions,
+    .charontak-log-actions {
+        flex-wrap: wrap;
+    }
+
+    .pf-v6-c-button,
+    .pf-c-button,
+    button {
+        flex: 1 1 12rem;
+    }
+}

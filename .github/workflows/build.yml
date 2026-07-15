@@ -14,11 +14,19 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Validate plugin files
-        run: |
-          node --check *.js
-          python3 -c "import json; json.load(open('manifest.json'))"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Build bundle
+        run: make
+
+      - name: Lint and test
+        run: make check
 
       - name: Install nfpm
         if: startsWith(github.ref, 'refs/tags/')
@@ -31,9 +39,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           export VERSION="${GITHUB_REF_NAME#v}"
-          mkdir -p out
-          nfpm package -f nfpm.yaml -p deb -t out/
-          nfpm package -f nfpm.yaml -p rpm -t out/
+          make package
           cp out/cockpit-charontak_*_all.deb out/cockpit-charontak_latest_all.deb
           ls -la out/
 

@@ -3,9 +3,18 @@
 A [Cockpit](https://cockpit-project.org/) web console plugin for
 [Charontak](https://github.com/snstac/charontak), the **Cursor on Target (CoT) bridge**
 that concentrates your sensor fleet's traffic into **one TLS session to TAK Server**
-(plus Mesh SA fan-out). Control the `charontak` service, edit `/etc/charontak.ini`
-lanes, and tail the journal — no SSH required. Part of the TAK / ATAK / WinTAK
-situational-awareness stack for Raspberry Pi and Debian sensor gateways.
+(plus Mesh SA fan-out). Part of the TAK / ATAK / WinTAK situational-awareness stack
+for Raspberry Pi and Debian sensor gateways. No SSH required:
+
+* **Structured lane editor** — add, edit, enable/disable, and delete `[lane:*]`
+  sections of `/etc/charontak.ini` from a form, with the same CoT URL validation
+  the daemon applies at startup (PyTAK scheme support, loopback `udp://`
+  ambiguity, cross-lane UDP bind conflicts).
+* **TLS certificate upload** to `/etc/charontak/tls` (`root:charontak 0640`),
+  with paths applied to the open lane's PyTAK TLS settings.
+* **Global defaults editor** for the `[charontak]` section.
+* **Service control** (start/stop/restart/enable/disable), status, and journal
+  tail, plus a raw config editor with save-conflict detection as the escape hatch.
 
 ## Install
 
@@ -14,6 +23,20 @@ sudo curl -fsSL -o /usr/share/keyrings/snstac.gpg https://snstac.github.io/packa
 sudo curl -fsSL -o /etc/apt/sources.list.d/snstac.sources https://snstac.github.io/packages/snstac.sources
 sudo apt update && sudo apt install cockpit-charontak charontak
 ```
+
+## Development
+
+React + TypeScript + PatternFly on the Cockpit starter-kit toolchain
+(same stack as [cockpit-aiscot](https://github.com/snstac/cockpit-aiscot)):
+
+```sh
+make            # fetch pkg/lib + node_modules, build dist/
+make check      # eslint, stylelint, tsc, vitest
+make devinstall # symlink dist/ into ~/.local/share/cockpit/charontak
+make package    # deb + rpm via nfpm (uses git describe for VERSION)
+```
+
+Releases: push a `v*` tag; CI builds, tests, packages, and uploads deb + rpm.
 
 ## The snstac TAK sensor ecosystem
 
@@ -29,7 +52,7 @@ matching Cockpit plugin for browser-based management:
 | Radio direction finding (KrakenSDR) | [kraktak](https://github.com/snstac/kraktak) | — |
 | APRS amateur radio | [aprscot](https://github.com/snstac/aprscot) | — |
 | Weather stations | [windtak](https://github.com/snstac/windtak) | — |
-| CoT routing / TAK Server bridging | [charontak](https://github.com/snstac/charontak) | — |
+| CoT routing / TAK Server bridging | [charontak](https://github.com/snstac/charontak) | cockpit-charontak (this repo) |
 
 All gateways are built on [PyTAK](https://github.com/snstac/pytak), speak
 **Cursor on Target (CoT)** to **ATAK, WinTAK, iTAK, TAK Server, and Mesh SA**, ship as
