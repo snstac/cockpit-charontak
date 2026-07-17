@@ -13,6 +13,8 @@ import {
 } from '@patternfly/react-core/dist/esm/components/Card/index.js';
 import cockpit from 'cockpit';
 
+import type { ToastMessage } from '@snstac/cockpit-shared';
+
 import {
     type LaneUrls,
     truthy,
@@ -31,7 +33,6 @@ import {
     removeLane,
     validateLaneName,
 } from './lanes';
-import type { ToastMessage } from './serviceCard';
 
 const _ = cockpit.gettext;
 
