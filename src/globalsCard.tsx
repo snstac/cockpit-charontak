@@ -14,9 +14,10 @@ import {
 } from '@patternfly/react-core/dist/esm/components/Card/index.js';
 import cockpit from 'cockpit';
 
+import type { ToastMessage } from '@snstac/cockpit-shared';
+
 import { parseIni, serializeIni, findSectionFold, getValue, setValue, deleteKey } from './iniFile';
 import { ensureGlobalSection, GLOBAL_SECTION } from './lanes';
-import type { ToastMessage } from './serviceCard';
 
 const _ = cockpit.gettext;
 

@@ -11,12 +11,12 @@ import { Checkbox } from '@patternfly/react-core';
 
 import cockpit from 'cockpit';
 
+import { ServiceManagementCard, TlsUploadCard, type ToastMessage } from '@snstac/cockpit-shared';
+
 import { GlobalsCard } from './globalsCard';
 import { type LaneDraft, LanesCard } from './laneCard';
 import { LogsCard } from './logsCard';
 import { RawConfigCard } from './rawConfigCard';
-import { ServiceManagementCard, type ToastMessage } from './serviceCard';
-import { TlsUploadCard } from './tlsCard';
 
 const _ = cockpit.gettext;
 
@@ -189,7 +189,15 @@ export const Application: React.FC = () => {
                         setDraft={setDraft}
                     />
 
-                    <TlsUploadCard onToast={setToast} onInstalledPaths={onTlsInstalled} />
+                    <TlsUploadCard
+                        tlsDir="/etc/charontak/tls"
+                        keyUser="charontak"
+                        testIdPrefix="ct"
+                        className="charontak-expandable-card"
+                        intro={_('With a lane open in the editor, installed paths are filled into its TLS fields.')}
+                        onToast={setToast}
+                        onInstalledPaths={onTlsInstalled}
+                    />
 
                     <GlobalsCard
                         content={content}
